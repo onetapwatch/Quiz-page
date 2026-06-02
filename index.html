@@ -1,172 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Locked Content</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #000;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .container {
-      background: #fff;
-      color: #000;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 400px;
-      width: 90%;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-      text-align: center;
-    }
-    h1 {
-      font-size: 24px;
-      font-weight: bold;
-    }
-    .instructions {
-      font-size: 16px;
-      text-align: left;
-      margin: 15px 0;
-    }
-    .instructions strong {
-      color: #1E3C72;
-    }
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-    .btn-primary {
-      background: #007bff;
-      color: white;
-      position: relative;
-    }
-    .btn-primary.loading::after {
-      content: '';
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      width: 16px;
-      height: 16px;
-      border: 3px solid white;
-      border-top: 3px solid transparent;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    .btn-primary:hover {
-      background: #0056b3;
-    }
-    .btn-secondary {
-      background: #28a745;
-      color: white;
-      opacity: 0.5;
-      pointer-events: none;
-    }
-    .btn-secondary.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recovery Review In Progress</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#ffffff;
+padding:20px;
+}
+
+.card{
+max-width:600px;
+margin:auto;
+background:#fff;
+}
+
+.badge{
+display:inline-flex;
+align-items:center;
+padding:8px 14px;
+border-radius:999px;
+background:#dcfce7;
+color:#166534;
+font-size:13px;
+font-weight:700;
+margin-bottom:20px;
+}
+
+h1{
+font-size:32px;
+font-weight:800;
+margin-bottom:12px;
+color:#111827;
+}
+
+.subtitle{
+font-size:15px;
+line-height:1.7;
+color:#6b7280;
+margin-bottom:40px;
+}
+
+.timeline{
+position:relative;
+}
+
+.timeline-item{
+display:flex;
+align-items:flex-start;
+gap:16px;
+position:relative;
+}
+
+.timeline-icon{
+width:42px;
+height:42px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:700;
+flex-shrink:0;
+z-index:2;
+}
+
+.completed .timeline-icon{
+background:#22c55e;
+color:white;
+}
+
+.processing .timeline-icon{
+background:#facc15;
+color:#111;
+}
+
+.pending .timeline-icon{
+background:#e5e7eb;
+color:#6b7280;
+}
+
+.timeline-content{
+padding-bottom:30px;
+}
+
+.timeline-content h3{
+font-size:17px;
+font-weight:700;
+margin-bottom:8px;
+color:#111827;
+}
+
+.timeline-content p{
+font-size:14px;
+line-height:1.7;
+color:#6b7280;
+}
+
+.timestamp{
+margin-top:10px;
+font-size:12px;
+color:#9ca3af;
+}
+
+.timeline-line{
+width:2px;
+height:45px;
+background:#e5e7eb;
+margin-left:20px;
+}
+
+.processing-spin{
+animation:spin 1.5s linear infinite;
+}
+
+@keyframes spin{
+from{
+transform:rotate(0deg);
+}
+to{
+transform:rotate(360deg);
+}
+}
+
+.priority-btn{
+margin-top:16px;
+display:inline-block;
+padding:10px 16px;
+border-radius:999px;
+background:#2563eb;
+color:white;
+font-size:13px;
+font-weight:700;
+border:none;
+cursor:pointer;
+}
+
+.priority-btn:hover{
+opacity:.95;
+}
+
+</style>
 </head>
+
 <body>
 
-  <div class="container">
-    <h1>Locked Content</h1>
-    <p>To reach the target page, complete the following steps:</p>
+<div class="card">
 
-    <div class="instructions">
-      <p><strong>1.</strong> Click the <strong>Watch & Follow to Get Content</strong> button.</p>
-      <p><strong>2.</strong> Follow the channel and <strong>watch for at least 25 seconds.</strong></p>
-      <p><strong>3.</strong> Return to unlock the content.</p>
-    </div>
+<div class="badge">
+Recovery Case Active
+</div>
 
-    <button id="watchButton" class="btn btn-primary">Watch & Follow to Get Content</button>
-    <button id="unlockButton" class="btn btn-secondary">🔓 Unlock Content</button>
-  </div>
+<h1>
+Recovery Review In Progress
+</h1>
 
-  <script>
-    function openExternalLink(url) {
-      const ua = navigator.userAgent.toLowerCase();
-      const isInstagram = ua.includes("instagram");
-      const isTelegram = ua.includes("telegram");
+<p class="subtitle">
+Your case has been assigned to our specialist
+recovery team for evaluation and appeal review.
+<br><br>
+If your case qualifies, you may become eligible
+for an additional appeal opportunity regarding
+your disabled account.
+</p>
 
-      if (isInstagram || isTelegram) {
-        if (ua.includes("android")) {
-          const noProtocol = url.replace(/^https?:\/\//, "");
-          window.location = `intent://${noProtocol}#Intent;scheme=https;end;`;
-        } else {
-          window.location = url;
-        }
-      } else {
-        window.open(url, "_blank");
-      }
-    }
+<div class="timeline">
 
-    window.onload = function () {
-      const urlParams = new URLSearchParams(window.location.search);
-      const uniqueKey = urlParams.get('key');
+<div class="timeline-item completed">
 
-      if (!uniqueKey) {
-        alert("Invalid or missing content key in the URL!");
-        return;
-      }
+<div class="timeline-icon">
+✓
+</div>
 
-      // 🔥 FIXED WATCH LINK (YOUR LINK)
-      const videoLink = "https://invite.aagameclub.com/?code=C40P62Z";
+<div class="timeline-content">
 
-      // 🔥 OPTIONAL: Show referral code pop-up
-      alert("Enter referral code: C40P62Z");
+<h3>Request Registered</h3>
 
-      // 🔥 FIXED CONTENT LINK (Still taken from ?key= )
-      fetch("content.json")
-        .then(response => response.json())
-        .then(data => {
-          const entry = data[uniqueKey];
+<p>
+Your recovery request has been successfully registered
+and assigned to a specialist.
+</p>
 
-          if (!entry) {
-            alert("Video not found in content.json for key: " + uniqueKey);
-            return;
-          }
+<div class="timestamp">
+Updated Jun 2, 2026 • 4:54 PM
+</div>
 
-          const contentLink = entry.contentLink;
+</div>
 
-          document.getElementById("watchButton").addEventListener("click", function () {
-            this.classList.add("loading");
+</div>
 
-            openExternalLink(videoLink);
+<div class="timeline-line"></div>
 
-            setTimeout(() => {
-              const unlockBtn = document.getElementById("unlockButton");
-              unlockBtn.classList.add("active");
-              unlockBtn.addEventListener("click", function () {
-                window.location.href = contentLink;
-              });
-            }, 25000);
-          });
-        })
-        .catch(error => {
-          console.error("Error loading content.json:", error);
-          alert("Could not load content.json!");
-        });
-    };
-  </script>
+<div class="timeline-item processing">
+
+<div class="timeline-icon processing-spin">
+↻
+</div>
+
+<div class="timeline-content">
+
+<h3>Recovery Team Processing</h3>
+
+<p>
+Your case is currently undergoing review.
+<br><br>
+Due to increased request volume,
+processing may take up to 72 hours.
+</p>
+
+<button class="priority-btn">
+Priority Review
+</button>
+
+</div>
+
+</div>
+
+<div class="timeline-line"></div>
+
+<div class="timeline-item pending">
+
+<div class="timeline-icon">
+○
+</div>
+
+<div class="timeline-content">
+
+<h3>Recovery Authorization</h3>
+
+<p>
+Eligibility for appeal will be
+determined after review completion.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 </body>
 </html>
+```
