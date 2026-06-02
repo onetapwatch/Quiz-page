@@ -219,9 +219,7 @@ Your recovery request has been successfully registered
 and assigned to a specialist.
 </p>
 
-<div class="timestamp">
-Assigned Jun 2, 2026 • 4:54 PM
-</div>
+<div class="timestamp" id="assignedDate"></div>
 
 </div>
 
@@ -284,7 +282,30 @@ determined after review completion.
 </div>
 
 </div>
+<script>
 
+let savedDate = localStorage.getItem('assignedDate');
+
+if(!savedDate){
+
+const now = new Date();
+
+savedDate = now.toLocaleString(undefined,{
+month:'short',
+day:'numeric',
+year:'numeric',
+hour:'numeric',
+minute:'2-digit'
+});
+
+localStorage.setItem('assignedDate', savedDate);
+
+}
+
+document.getElementById('assignedDate').innerText =
+'Assigned ' + savedDate;
+
+</script>
 </body>
 </html>
 ```
