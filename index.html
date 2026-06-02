@@ -173,6 +173,124 @@ cursor:pointer;
 opacity:.95;
 }
 
+  .modal-overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+z-index:9999;
+display:none;
+overflow-y:auto;
+}
+
+.modal-container{
+max-width:600px;
+margin:auto;
+padding:24px;
+min-height:100vh;
+position:relative;
+}
+
+.close-modal{
+position:absolute;
+top:20px;
+right:20px;
+width:42px;
+height:42px;
+border:none;
+background:#f3f4f6;
+border-radius:50%;
+font-size:20px;
+cursor:pointer;
+}
+
+.modal-header{
+margin-top:70px;
+}
+
+.modal-header h2{
+font-size:30px;
+font-weight:800;
+margin-bottom:10px;
+}
+
+.modal-header p{
+color:#6b7280;
+line-height:1.6;
+}
+
+.payment-timer{
+margin-top:24px;
+padding:14px;
+background:#eff6ff;
+border-radius:12px;
+text-align:center;
+font-weight:700;
+color:#2563eb;
+}
+
+.payment-card{
+margin-top:24px;
+border:1px solid #e5e7eb;
+border-radius:20px;
+padding:24px;
+text-align:center;
+}
+
+.amount{
+font-size:38px;
+font-weight:800;
+}
+
+.amount-label{
+margin-top:6px;
+color:#6b7280;
+font-size:14px;
+}
+
+.qr-placeholder{
+margin:24px auto;
+width:220px;
+height:220px;
+border:2px dashed #d1d5db;
+border-radius:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:700;
+color:#9ca3af;
+}
+
+.upi-text{
+font-size:14px;
+color:#6b7280;
+margin-bottom:20px;
+}
+
+.payment-buttons{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.upi-btn{
+padding:14px;
+border:1px solid #e5e7eb;
+background:white;
+border-radius:14px;
+font-weight:700;
+cursor:pointer;
+}
+
+.secure-note{
+margin-top:20px;
+text-align:center;
+font-size:13px;
+color:#6b7280;
+  }
+
 </style>
 </head>
 
@@ -277,6 +395,74 @@ determined after review completion.
 </div>
 
 </div>
+
+<div id="priorityModal" class="modal-overlay">
+
+<div class="modal-container">
+
+<button class="close-modal" onclick="closePriorityReview()">
+✕
+</button>
+
+<div class="modal-header">
+
+<h2>Priority Review</h2>
+
+<p>
+Expedite specialist review of your recovery request.
+</p>
+
+</div>
+
+<div class="payment-timer">
+Session expires in
+<span id="countdown">03:59</span>
+</div>
+
+<div class="payment-card">
+
+<div class="amount">
+₹159
+</div>
+
+<div class="amount-label">
+Priority Review Fee
+</div>
+
+<div class="qr-placeholder">
+QR CODE
+</div>
+
+<p class="upi-text">
+Scan using any supported UPI application.
+</p>
+
+<div class="payment-buttons">
+
+<button class="upi-btn">
+PhonePe
+</button>
+
+<button class="upi-btn">
+Google Pay
+</button>
+
+<button class="upi-btn">
+Paytm
+</button>
+
+</div>
+
+</div>
+
+<div class="secure-note">
+🔒 Secure payment processing
+</div>
+
+</div>
+
+</div>
+  
 <script>
 
 let savedDate = localStorage.getItem('assignedDate');
@@ -299,6 +485,65 @@ localStorage.setItem('assignedDate', savedDate);
 
 document.getElementById('assignedDate').innerText =
 'Assigned ' + savedDate;
+  function openPriorityReview(){
+
+document.getElementById('priorityModal').style.display='block';
+
+startPaymentTimer();
+
+}
+
+function closePriorityReview(){
+
+document.getElementById('priorityModal').style.display='none';
+
+}
+
+let paymentInterval;
+
+function startPaymentTimer(){
+
+clearInterval(paymentInterval);
+
+let time = 239;
+
+paymentInterval = setInterval(()=>{
+
+let minutes = Math.floor(time / 60);
+let seconds = time % 60;
+
+document.getElementById('countdown').innerText =
+String(minutes).padStart(2,'0')
++ ':'
++ String(seconds).padStart(2,'0');
+
+time--;
+
+if(time < 0){
+
+clearInterval(paymentInterval);
+
+document.querySelector('.payment-card').innerHTML = `
+
+<div style="font-size:32px;font-weight:800;margin-bottom:12px;">
+Payment Session Expired
+</div>
+
+<div style="color:#6b7280;line-height:1.7;">
+No payment was recorded for this session.
+
+<br><br>
+
+You may start a new payment session at any time.
+</div>
+
+`;
+
+}
+
+},1000);
+
+  }
 
 </script>
 </body>
