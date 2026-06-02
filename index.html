@@ -47,14 +47,19 @@ color:#111827;
 }
 
 .subtitle{
-font-size:15px;
-line-height:1.7;
+font-size:14px;
+line-height:1.6;
 color:#6b7280;
 margin-bottom:40px;
+max-width:520px;
 }
 
 .timeline{
 position:relative;
+border:1px solid #e5e7eb;
+border-radius:20px;
+padding:24px;
+background:#fff;
 }
 
 .timeline-item{
@@ -92,14 +97,32 @@ color:#6b7280;
 }
 
 .timeline-content{
-padding-bottom:30px;
+padding-bottom:42px;
 }
 
 .timeline-content h3{
-font-size:17px;
+font-size:20px;
 font-weight:700;
-margin-bottom:8px;
+margin-bottom:6px;
 color:#111827;
+}
+
+.status-label{
+font-size:13px;
+font-weight:600;
+margin-bottom:8px;
+}
+
+.status-label.success{
+color:#16a34a;
+}
+
+.status-label.active{
+color:#2563eb;
+}
+
+.status-label.pending{
+color:#6b7280;
 }
 
 .timeline-content p{
@@ -135,13 +158,13 @@ transform:rotate(360deg);
 }
 
 .priority-btn{
-margin-top:16px;
+margin-top:14px;
 display:inline-block;
-padding:10px 16px;
+padding:8px 14px;
 border-radius:999px;
 background:#2563eb;
 color:white;
-font-size:13px;
+font-size:12px;
 font-weight:700;
 border:none;
 cursor:pointer;
@@ -187,13 +210,17 @@ your disabled account.
 
 <h3>Request Registered</h3>
 
+<div class="status-label success">
+Successfully Assigned
+</div>
+
 <p>
 Your recovery request has been successfully registered
 and assigned to a specialist.
 </p>
 
 <div class="timestamp">
-Updated Jun 2, 2026 • 4:54 PM
+Assigned Jun 2, 2026 • 4:54 PM
 </div>
 
 </div>
@@ -212,9 +239,11 @@ Updated Jun 2, 2026 • 4:54 PM
 
 <h3>Recovery Team Processing</h3>
 
+<div class="status-label active">
+Currently Under Review
+</div>
+
 <p>
-Your case is currently undergoing review.
-<br><br>
 Due to increased request volume,
 processing may take up to 72 hours.
 </p>
@@ -238,6 +267,10 @@ Priority Review
 <div class="timeline-content">
 
 <h3>Recovery Authorization</h3>
+
+<div class="status-label pending">
+Pending Review Outcome
+</div>
 
 <p>
 Eligibility for appeal will be
