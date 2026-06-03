@@ -253,14 +253,11 @@ font-size:14px;
 .qr-placeholder{
 .payment-qr{
 display:block;
-width:240px;
-height:240px;
-margin:24px auto;
-padding:10px;
-background:white;
-border:1px solid #e5e7eb;
-border-radius:16px;
+width:180px;
+height:180px;
 object-fit:contain;
+margin:24px auto;
+border-radius:16px;
 }
 
 .upi-text{
@@ -276,15 +273,21 @@ gap:10px;
 }
 
 .upi-btn{
+.upi-btn{
+width:100%;
 padding:14px;
 border:none;
+border-radius:14px;
 background:#2563eb;
 color:white;
-border-radius:14px;
+font-size:15px;
 font-weight:700;
 cursor:pointer;
-font-size:14px;
-width:100%;
+transition:.2s;
+}
+
+.upi-btn:hover{
+opacity:.95;
 }
 
 .secure-note{
@@ -499,7 +502,7 @@ Submit Verification
 </div>
 
 <p class="upi-text">
-Scan the QR code or continue using our secure payment portal.
+Scan the QR code using any UPI app or continue through our secure payment portal.
 </p>
 
 <div class="payment-buttons">
