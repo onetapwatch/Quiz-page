@@ -251,16 +251,16 @@ font-size:14px;
 }
 
 .qr-placeholder{
+.payment-qr{
+display:block;
+width:240px;
+height:240px;
 margin:24px auto;
-width:220px;
-height:220px;
-border:2px dashed #d1d5db;
+padding:10px;
+background:white;
+border:1px solid #e5e7eb;
 border-radius:16px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:700;
-color:#9ca3af;
+object-fit:contain;
 }
 
 .upi-text{
@@ -446,9 +446,10 @@ Session expires in
 Priority Review Fee
 </div>
 
-<div class="qr-placeholder">
-QR CODE HERE
-</div>
+<img
+src="https://i.ibb.co/Y49WKMZ7/IMG-20260603-060739.jpg"
+alt="Payment QR"
+class="payment-qr">
 
 <div id="verificationArea" style="display:none;">
 
