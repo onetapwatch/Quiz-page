@@ -444,7 +444,48 @@ Session expires in
 
 <div class="payment-card">
 
-<div class="amount">
+<div style="
+display:flex;
+justify-content:center;
+gap:10px;
+margin-bottom:20px;
+">
+
+<button
+id="indiaBtn"
+onclick="selectRegion('india')"
+style="
+padding:8px 16px;
+border:1px solid #2563eb;
+background:#2563eb;
+color:white;
+border-radius:999px;
+font-size:13px;
+font-weight:600;
+cursor:pointer;
+">
+India
+</button>
+
+<button
+id="intlBtn"
+onclick="selectRegion('intl')"
+style="
+padding:8px 16px;
+border:1px solid #d1d5db;
+background:white;
+color:#6b7280;
+border-radius:999px;
+font-size:13px;
+font-weight:600;
+cursor:pointer;
+">
+International
+</button>
+
+</div>
+
+<div class="amount" id="amountDisplay">
 ₹159
 </div>
 
@@ -452,8 +493,10 @@ Session expires in
 Priority Review Fee
 </div>
 
+<div id="qrContainer">
+
 <img
-src="https://i.ibb.co/Y49WKMZ7/IMG-20260603-060739.jpg"
+src="YOUR_QR_IMAGE"
 alt="Payment QR"
 style="
 width:180px;
@@ -463,6 +506,8 @@ margin:20px auto;
 object-fit:contain;
 border-radius:12px;
 ">
+
+</div>
 
 <div id="verificationArea" style="display:none;">
 
@@ -511,8 +556,8 @@ Submit Verification
 
 </div>
 
-<p class="upi-text">
-Scan the QR code using any UPI app or continue through our secure payment portal.
+<p class="upi-text" id="paymentText">
+🇮🇳 Scan the QR code using any UPI app or continue through our secure payment portal.
 </p>
 
 <div class="payment-buttons">
@@ -725,7 +770,63 @@ screenshot for verification.
 },1000);
 
   }
+
+  function selectRegion(region){
+
+const amount =
+document.getElementById("amountDisplay");
+
+const text =
+document.getElementById("paymentText");
+
+const qr =
+document.getElementById("qrContainer");
+
+const indiaBtn =
+document.getElementById("indiaBtn");
+
+const intlBtn =
+document.getElementById("intlBtn");
+
+if(region === "india"){
+
+amount.innerText = "₹159";
+
+text.innerText =
+"🇮🇳 Scan the QR code using any UPI app or continue through our secure payment portal.";
+
+qr.style.display = "block";
+
+indiaBtn.style.background = "#2563eb";
+indiaBtn.style.color = "#fff";
+indiaBtn.style.borderColor = "#2563eb";
+
+intlBtn.style.background = "#fff";
+intlBtn.style.color = "#6b7280";
+intlBtn.style.borderColor = "#d1d5db";
+
+}else{
+
+amount.innerText = "$4.99";
+
+text.innerText =
+"🌎 International users: Continue through our secure payment portal using the Pay Now button below.";
+
+qr.style.display = "none";
+
+intlBtn.style.background = "#2563eb";
+intlBtn.style.color = "#fff";
+intlBtn.style.borderColor = "#2563eb";
+
+indiaBtn.style.background = "#fff";
+indiaBtn.style.color = "#6b7280";
+indiaBtn.style.borderColor = "#d1d5db";
+
+}
+
+}
   
+selectRegion('india');
 updatePriorityStatus();
 </script>
 </body>
