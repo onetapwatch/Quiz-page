@@ -569,9 +569,7 @@ Pay Now
   const isIndia =
 Intl.DateTimeFormat()
 .resolvedOptions()
-.timeZone
-.includes("India");
-
+.timeZone === "Asia/Kolkata";
 const paymentConfig = isIndia
 ? {
 amount:"₹159",
