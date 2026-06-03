@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -445,25 +444,13 @@ Session expires in
 
 <div class="payment-card">
 
-<div class="amount" id="paymentAmount">
+<div class="amount">
 ₹159
 </div>
 
-  <div style="
-margin-top:12px;
-font-size:13px;
-color:#6b7280;
-line-height:1.7;
-">
-Standard review: Up to 72 hours<br>
-Priority review: Within 24 hours
-</div>
-
-<div class="amount-label" id="paymentTitle">
+<div class="amount-label">
 Priority Review Fee
 </div>
-
-<div id="qrSection">
 
 <img
 src="https://i.ibb.co/Y49WKMZ7/IMG-20260603-060739.jpg"
@@ -476,8 +463,6 @@ margin:20px auto;
 object-fit:contain;
 border-radius:12px;
 ">
-
-</div>
 
 <div id="verificationArea" style="display:none;">
 
@@ -526,14 +511,13 @@ Submit Verification
 
 </div>
 
-<p class="upi-text" id="paymentInstruction">
+<p class="upi-text">
 Scan the QR code using any UPI app or continue through our secure payment portal.
 </p>
 
 <div class="payment-buttons">
 
 <button
-id="payBtn"
 onclick="window.open('https://www.instamojo.com/@Growthacademy0/','_blank')"
 style="
 width:100%;
@@ -547,7 +531,9 @@ font-weight:700;
 cursor:pointer;
 margin-top:10px;
 ">
+
 Pay Now
+
 </button>
 
 </div>
@@ -566,26 +552,6 @@ Pay Now
   
 <script>
 
-  const isIndia =
-Intl.DateTimeFormat()
-.resolvedOptions()
-.timeZone === "Asia/Kolkata";
-const paymentConfig = isIndia
-? {
-amount:"₹159",
-title:"Priority Review Fee",
-button:"Pay via UPI",
-instruction:
-"🇮🇳 Scan the QR code using Google Pay, PhonePe, Paytm or any UPI app."
-}
-: {
-amount:"$4.99",
-title:"Priority Review Fee",
-button:"Continue to Secure Checkout",
-instruction:
-"🌎 UPI payments are unavailable in your region. Continue through our secure payment portal."
-};
-  
 let savedDate = localStorage.getItem('assignedDate');
 
 if(!savedDate){
@@ -759,34 +725,7 @@ screenshot for verification.
 },1000);
 
   }
-
-   function initializePaymentUI(){
-
-document.getElementById("paymentAmount")
-.innerText =
-paymentConfig.amount;
-
-document.getElementById("paymentTitle")
-.innerText =
-paymentConfig.title;
-
-document.getElementById("paymentInstruction")
-.innerText =
-paymentConfig.instruction;
-
-document.getElementById("payBtn")
-.innerText =
-paymentConfig.button;
-
-if(!isIndia){
-
-document.getElementById("qrSection")
-.style.display="none";
-
-}
-
-}
-initializePaymentUI();
+  
 updatePriorityStatus();
 </script>
 </body>
